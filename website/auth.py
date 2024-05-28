@@ -11,7 +11,6 @@ def logout():
 def sign_up():
     if request.method == 'POST':
         email=request.form.get('email')
-        phone=request.form.get('phone')
         username=request.form.get('username')
         password1=request.form.get('password')
         password2=request.form.get('password1')
@@ -19,8 +18,6 @@ def sign_up():
             flash('Email must be greater than 3 characters', category='error')
         elif len(username)<3:
             flash('Username must be greater than 2 characters', category='error')
-        elif len(phone<10):
-            flash('Phone number must be greater than 10 characters', category='error')
         elif len(password1)<7:
             flash('Password must be greater than 7 characters', category='error')
         elif password1!=password2:
