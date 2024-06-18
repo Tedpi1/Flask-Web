@@ -1,18 +1,18 @@
-from . import db
+from . import td
 from flask_login import UserMixin
 from sqlalchemy.sql import func
 
 
-class Note(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    data = db.Column(db.String(10000))
-    date = db.Column(db.DateTime(timezone=True), default=func.now())
-    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+class Note(td.Model):
+    id = td.Column(td.Integer, primary_key=True)
+    data = td.Column(td.String(10000))
+    date = td.Column(td.DateTime(timezone=True), default=func.now())
+    user_id = td.Column(td.Integer, td.ForeignKey('user.id'))
 
 
-class User(db.Model, UserMixin):
-    id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(150), unique=True)
-    email = db.Column(db.String(150), unique=True)
-    password = db.Column(db.String(150))
-    notes = db.relationship('Note')
+class User(td.Model, UserMixin):
+    id = td.Column(td.Integer, primary_key=True)
+    email = td.Column(td.String(150), unique=True)
+    password = td.Column(td.String(150))
+    username= td.Column(td.String(150))
+    notes = td.relationship('Note')
