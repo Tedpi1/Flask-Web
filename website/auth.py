@@ -1,5 +1,7 @@
-from flask import Blueprint, render_template, request, flash
-
+from flask import Blueprint, render_template, request, flash, redirect, url_for
+from .models import User, Note
+from werkzeug.security import generate_password_hash, check_password_hash #a way of protecting password
+from . import td
 auth=Blueprint('auth',__name__)
 
 @auth.route('/login')
@@ -24,6 +26,10 @@ def sign_up():
         elif password!=password1:
             flash('Passwords do not match', category='error')
         else:
+            new_user= User(email=email, username=username, password=generate_password_hash(password))
             flash('Account created', category='success')
+            td.session.add(new_user)
+            td.session.commit()
+            return redirect(url_for('views.home'))
         
     return render_template('signup.html')
