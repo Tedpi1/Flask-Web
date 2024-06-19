@@ -1,6 +1,7 @@
 {
     "cSpell.words": [
         "sqlalchemy",
-        "SQLALCHEMY"
+        "SQLALCHEMY",
+        "werkzeug"
     ]
 }
