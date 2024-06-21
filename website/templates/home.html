@@ -1,8 +1,22 @@
 {% extends "base.html" %}
 {% block title %} Home {% endblock %}
 {% block content %}
-<h1>Home</h1>
-<p>Welcome to the homepage.</p>
-<p>This is a simple Django app to render initial data.</p>
-<p>It can be used as boilerplate for new Django projects.</p>
+<h1 align="center">Notes</h1>
+<ul class="list-group list-group-flush">
+    {%for note in user.notes%}
+    <li class="list-group-item">
+        {{note.data}}
+        <button type="button" class="close" onClick="deleteNote({{note.id}})">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </li>
+    {%endfor%}
+</ul>
+<form method="POST">
+    <textarea name="note" id="note" class="form-control"></textarea>
+    <br >
+    <div align="center">
+        <button type="submit" class="btn btn-primary">Add Notes</button>
+    <div>
+</form>
 {% endblock %}
